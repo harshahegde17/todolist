@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Todo(props) {
     const classes = useStyles();
     const tasks = props.tasks
-    const listTasks = tasks.map((task) =>
-        <ListItem>{task}</ListItem>
+    const listTasks = tasks.map(task =>
+        <ListItem key={task.taskId}>{task.taskName}</ListItem>
     );
 
 

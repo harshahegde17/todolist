@@ -1,22 +1,28 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import { Grid , Button} from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 import Header from "./Header"
 import Todo from "./Todo"
 
 
 class App extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            tasks:["task1", "task2"]
+        this.state = {
+            tasks: [],
+            i : 0
         }
     }
-    addTask(){
-        console.log(this.state.tasks);
-        this.state.tasks.push("new task")
-        console.log(this.state.tasks);
+    addTask(i) {
+        this.setState(state => {
+            const list = state.tasks.push({"taskId": i, "taskName": "newTask "+ i});
+            state.i = state.i + 1;
+            return {
+                list
+            }
+        })
+
     }
     render() {
         return (
@@ -30,7 +36,7 @@ class App extends React.Component {
                         <Todo tasks={this.state.tasks}></Todo>
                     </Grid>
                 </Grid>
-                <Button onClick={()=>this.addTask()}>Add Task</Button>
+                <Button onClick={() => this.addTask(this.state.i)}>Add Task</Button>
             </Container>
 
 
